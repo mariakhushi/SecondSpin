@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Rental Product Detail - {{ product.title }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-10">
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ product.title }}</h2>
+        <div class="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-64 h-64 object-cover rounded-lg shadow-md">
+            <div>
+                <p class="text-gray-600 mb-2"><strong>Category:</strong> {{ product.get_category_display }}</p>
+                <p class="text-gray-600 mb-2"><strong>Size:</strong> {{ product.size }}</p>
+                <p class="text-gray-600 mb-2"><strong>Price per day:</strong> ৳ {{ product.rent_price_per_day }}</p>
+                <p class="text-gray-600 mb-4"><strong>Description:</strong> {{ product.description }}</p>
+            </div>
+        </div>
+
+        {% if product.available %}
+        <div class="mt-6">
+            <a href="{% url 'rental_checkout' product.id %}" 
+               class="w-full block text-center bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500">
+                Proceed to Checkout
+            </a>
+        </div>
+        {% else %}
+        <p class="text-red-500 mt-6">This product is currently unavailable.</p>
+        {% endif %}
+
+        <div class="mt-6">
+            <a href="{% url 'rental_products' %}" 
+               class="inline-block bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition duration-300 ease-in-out">
+                Back to Rentals
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block content %}
+<section class="bg-[#f8f5f2] py-20">
+    <div class="container mx-auto px-4 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <!-- Contact Form -->
+            <div class="bg-gray-300 rounded-lg shadow-lg p-8">
+                <h2 class="text-4xl font-serif mb-6 text-gray-900">Get in Touch</h2>
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md py-2 border-gray-900 shadow-sm focus:border-[#f3d5c9] focus:ring focus:ring-[#f3d5c9] focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md py-2 border-gray-900 shadow-sm focus:border-[#f3d5c9] focus:ring focus:ring-[#f3d5c9] focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                        <select id="subject" name="subject" class="mt-1 block w-full rounded-md py-2 border-gray-900 shadow-sm focus:border-[#f3d5c9] focus:ring focus:ring-[#f3d5c9] focus:ring-opacity-50">
+                            <option>General Inquiry</option>
+                            <option>Order Status</option>
+                            <option>Returns & Exchanges</option>
+                            <option>Product Information</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-md py-2 border-gray-900 shadow-sm focus:border-[#f3d5c9] focus:ring focus:ring-[#f3d5c9] focus:ring-opacity-50"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-gray-900 text-white rounded-full px-8 py-3 font-medium hover:bg-[#f3d5c9] hover:text-gray-900 transition-colors">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-serif mb-4 text-gray-900">Contact Information</h3>
+                    <p class="text-lg text-gray-700">We're here to help! Reach out to us through any of the following methods:</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <i class='bx bx-map text-2xl text-[#f3d5c9]'></i>
+                        <span class="text-gray-700">
+                            Farmgate, Dhaka, Bangladesh
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <i class='bx bx-phone text-2xl text-[#f3d5c9]'></i>
+                        <span class="text-gray-700">(555) 123-4567</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <i class='bx bx-envelope text-2xl text-[#f3d5c9]'></i>
+                        <span class="text-gray-700">info@secondspin.com</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-serif mb-4 text-gray-900">Business Hours</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>Monday - Friday: 9:00 AM - 6:00 PM</li>
+                        <li>Saturday: 10:00 AM - 5:00 PM</li>
+                        <li>Sunday: Closed</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-serif mb-4 text-gray-900">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-900 hover:text-[#f3d5c9] transition-colors">
+                            <i class='bx bxl-facebook text-3xl'></i>
+                        </a>
+                        <a href="#" class="text-gray-900 hover:text-[#f3d5c9] transition-colors">
+                            <i class='bx bxl-instagram text-3xl'></i>
+                        </a>
+                        <a href="#" class="text-gray-900 hover:text-[#f3d5c9] transition-colors">
+                            <i class='bx bxl-twitter text-3xl'></i>
+                        </a>
+                        <a href="#" class="text-gray-900 hover:text-[#f3d5c9] transition-colors">
+                            <i class='bx bxl-pinterest text-3xl'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="bg-white py-20">
+    <div class="container mx-auto px-4 max-w-7xl">
+        <h2 class="text-4xl font-serif mb-8 text-center text-gray-900">Visit Our Store</h2>
+        <div class="aspect-w-16 aspect-h-9">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1825.8696147713054!2d90.38597113884937!3d23.75667679959895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a426199b0d%3A0x6a2c655d06c88ec9!2sFarmgate%2C%20Dhaka%201205!5e0!3m2!1sen!2sbd!4v1733074030320!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ user.username }}'s Profile
+{% endblock %}
+
+{% block content %}
+<div class="bg-gray-100 min-h-screen py-10">
+    <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-6">Welcome, {{ user.username }}</h1>
+
+        <!-- Personal Information Section -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Personal Information</h2>
+            <div class="space-y-4">
+                <img src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}https://ui-avatars.com/api/?name={{ user.username }}&background=random&rounded=true{% endif %}"
+                    alt="Profile Picture" class="w-24 h-24 rounded-full">
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Phone:</strong> {{ user_profile.phone }}</p>
+                <p><strong>Address:</strong> {{ user_profile.address }}</p>
+            </div>
+            <a href="{% url 'edit_profile' %}"
+                class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
+                Edit Profile
+            </a>
+        </div>
+
+        <!-- Seller Section -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Products (As Seller)</h2>
+            {% if products %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for product in products %}
+                <div class="border rounded-lg overflow-hidden shadow-sm bg-gray-50">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">{{ product.name }}</h3>
+                        <p class="text-gray-700">Price: ৳ {{ product.price }}</p>
+                        <p class="text-gray-600">Category: {{ product.category }}</p>
+                        <div class="mt-4 flex space-x-4">
+                            <a href="{% url 'update_product' product.id %}"
+                                class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 transition">Edit</a>
+                            <a href="{% url 'delete_product' product.id %}"
+                                class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 transition">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-gray-600">You haven't listed any products yet.</p>
+            {% endif %}
+            <a href="{% url 'create_product' %}"
+                class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
+                Add New Product
+            </a>
+        </div>
+
+        <!-- Buyer Section -->
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Orders</h2>
+            {% if orders %}
+            <table class="table-auto w-full text-left border-collapse border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="border border-gray-200 px-4 py-2">Order ID</th>
+                        <th class="border border-gray-200 px-4 py-2">Product</th>
+                        <th class="border border-gray-200 px-4 py-2">Quantity</th>
+                        <th class="border border-gray-200 px-4 py-2">Total Price</th>
+                        <th class="border border-gray-200 px-4 py-2">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    {% for item in order.items.all %}
+                    <tr>
+                        <td class="border border-gray-200 px-4 py-2">{{ order.id }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ item.product.name }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ item.quantity }}</td>
+                        <td class="border border-gray-200 px-4 py-2">৳ {{ item.price }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ order.get_status_display }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-gray-600">You have not placed any orders yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
